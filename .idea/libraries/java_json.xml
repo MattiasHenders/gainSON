@@ -1,11 +1,13 @@
 <component name="libraryTable">
   <library name="java-json">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mssql-jdbc-9.2.1.jre11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mssql-jdbc-9.2.1.jre15.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java-json.jar!/" />
     </SOURCES>
   </library>
 </component>
