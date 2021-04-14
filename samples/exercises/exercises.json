@@ -1,0 +1,45 @@
+{
+    "meta": {
+        "date": "April 11 12:24:05 PST 2021",
+        "version": "0.0.1"
+    },
+    "exerciseData": {
+        "pushUp": {
+            "exerciseID": 1,
+            "name": "Push Up",
+            "description": "Lower your body until your chest nears the floor at the bottom of the movement, and then return up to the starting position. This is one repetition.",
+            "difficulty": 2.0,
+            "locations": {
+                "boolAtGym": true,
+                "boolAtHome": true,
+                "boolOutside": true
+            },
+            "tracking": {
+                "boolRepsSets": true,
+                "boolBodyWeight": true,
+                "boolWeights": true,
+                "boolTimer": false,
+                "boolStopwatch": false,
+                "boolDistance": false
+            },
+            "muscleGroups": [
+                "triceps",
+                "pectorals",
+                "deltoids"
+            ],
+            "media": {
+                "youtube": "https://www.youtube.com/watch?v=_l3ySVKYVJ8"
+            },
+            "foreignData": [{
+                "language": "Spanish",
+                "name": "Hacer Subir",
+                "description": "Text for spanish push up here"
+            }, {
+                "language": "French",
+                "name": "Faire Monter",
+                "description": "Text for french push up here"
+            }]
+        }
+
+    }           
+}
