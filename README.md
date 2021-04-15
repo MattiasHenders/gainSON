@@ -21,7 +21,8 @@ This repo is an effort for future developers to easily get a database of exercis
 Developing apps is hard enough, you shouldn't waste time creating your own database of workouts. 
 
 #### How the final product should work
-```mermaid
+```
+mermaid
 
 graph LR 
 A((Start gainSON App)) --> B[Select options for JSON]
