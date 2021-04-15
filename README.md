@@ -21,17 +21,9 @@ This repo is an effort for future developers to easily get a database of exercis
 Developing apps is hard enough, you shouldn't waste time creating your own database of workouts. 
 
 #### How the final product should work
-```
-mermaid
 
-graph LR 
-A((Start gainSON App)) --> B[Select options for JSON]
-B --> C[Generate FULL JSON]
-C -->E
-B --> D[Generate CUSTOM JSON]
-D --> E[Save JSON to system]
-E --> F((Add JSON to App))
-```
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFIgXG5BKChTdGFydCBnYWluU09OIEFwcCkpIC0tPiBCW1NlbGVjdCBvcHRpb25zIGZvciBKU09OXVxuQiAtLT4gQ1tHZW5lcmF0ZSBGVUxMIEpTT05dXG5DIC0tPkVcbkIgLS0-IERbR2VuZXJhdGUgQ1VTVE9NIEpTT05dXG5EIC0tPiBFW1NhdmUgSlNPTiB0byBzeXN0ZW1dXG5FIC0tPiBGKChBZGQgSlNPTiB0byBBcHApKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFIgXG5BKChTdGFydCBnYWluU09OIEFwcCkpIC0tPiBCW1NlbGVjdCBvcHRpb25zIGZvciBKU09OXVxuQiAtLT4gQ1tHZW5lcmF0ZSBGVUxMIEpTT05dXG5DIC0tPkVcbkIgLS0-IERbR2VuZXJhdGUgQ1VTVE9NIEpTT05dXG5EIC0tPiBFW1NhdmUgSlNPTiB0byBzeXN0ZW1dXG5FIC0tPiBGKChBZGQgSlNPTiB0byBBcHApKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
 More features could be added, such as 
 ___
 
