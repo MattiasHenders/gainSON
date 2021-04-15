@@ -22,7 +22,7 @@ Developing apps is hard enough, you shouldn't waste time creating your own datab
 
 #### How the final product should work
 
-![image](https://user-images.githubusercontent.com/59512495/114821640-b9456780-9d75-11eb-91b2-4b3d7f2f7cf9.png)
+![Flow of the future final product](assets/img/flow.png)
 
 More features could be added, such as 
 ___
