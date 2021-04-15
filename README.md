@@ -22,7 +22,7 @@ Developing apps is hard enough, you shouldn't waste time creating your own datab
 
 #### How the final product should work
 
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFIgXG5BKChTdGFydCBnYWluU09OIEFwcCkpIC0tPiBCW1NlbGVjdCBvcHRpb25zIGZvciBKU09OXVxuQiAtLT4gQ1tHZW5lcmF0ZSBGVUxMIEpTT05dXG5DIC0tPkVcbkIgLS0-IERbR2VuZXJhdGUgQ1VTVE9NIEpTT05dXG5EIC0tPiBFW1NhdmUgSlNPTiB0byBzeXN0ZW1dXG5FIC0tPiBGKChBZGQgSlNPTiB0byBBcHApKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFIgXG5BKChTdGFydCBnYWluU09OIEFwcCkpIC0tPiBCW1NlbGVjdCBvcHRpb25zIGZvciBKU09OXVxuQiAtLT4gQ1tHZW5lcmF0ZSBGVUxMIEpTT05dXG5DIC0tPkVcbkIgLS0-IERbR2VuZXJhdGUgQ1VTVE9NIEpTT05dXG5EIC0tPiBFW1NhdmUgSlNPTiB0byBzeXN0ZW1dXG5FIC0tPiBGKChBZGQgSlNPTiB0byBBcHApKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+![image](https://user-images.githubusercontent.com/59512495/114821640-b9456780-9d75-11eb-91b2-4b3d7f2f7cf9.png)
 
 More features could be added, such as 
 ___
