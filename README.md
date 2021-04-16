@@ -1,7 +1,7 @@
 
 # gainSON - Open Source Workouts
 
-![gainSON: Because you didn't tell me a better name in time.](assets/img/logo.png)
+![gainSON: Because you didn't tell me a better name in time.](assets/img/logo-small.png)
 
 Welcome to the **open source** library for workouts.
 To get started go to [installation](#installation) to get a copy for yourself.
@@ -66,9 +66,9 @@ Create an issue if you want to add to this.
  - Host the database
  - Host a website for quick downloads of the full and some custom JSONs
  - Use the website to host the JSON
- - 
+ - Create an API to access the JSON dynamically from apps
 ___
 
-![gainSON: Because you didn't tell me a better name in time.](assets/img/logo.png)
+![gainSON: Because you didn't tell me a better name in time.](assets/img/logo-small.png)
 
 ## Copyright 2021 - Mattias Henders
