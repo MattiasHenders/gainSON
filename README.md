@@ -6,6 +6,8 @@
 Welcome to the **open source** library for workouts.
 To get started go to [installation](#installation) to get a copy for yourself.
 
+___
+
 ## Table of Contents
 
 ####  [Description](#description)  - Why make this? Who is it for?
