@@ -12,8 +12,8 @@ ___
 
 ####  [Description](#description)  - Why make this? Who is it for?
 ####  [Installation](#installation) - How do I get this for my app?
-####  [Roadmap](#roadmap) - Where is this project going?
 ####  [Contributors](#contributors) - Who helped out with this project?
+####  [Roadmap](#roadmap) - Where is this project going?
 
 ___
 
