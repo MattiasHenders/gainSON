@@ -34,7 +34,7 @@ Main.main()
 
 View the JSON object in the console
 
-Will liekly fail as current file is hard coded to my local path
+Will likely fail as current file is hard coded to my local path
 (Currently working on a better way to get the JSON)
 ```
 View the [roadmap](#roadmap) to see our plan to get to a better user experience
