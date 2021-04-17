@@ -44,7 +44,9 @@ insert into MuscleGroups values(@ID,
 /*lats*/
 1,
 /*traps*/
-1
+1,
+/*biceps*/
+0
 );
 
 insert into Media values(@ID,
@@ -52,26 +54,29 @@ insert into Media values(@ID,
 'https://www.youtube.com/watch?v=op9kVnSso6Q'
 );
 
-
 insert into SpanishData values(@ID,
 /*spanish name*/
 'Peso Muerto',
 /*spanish Description*/
-'Text for spanish deadlift here'
+'Text for spanish deadlift here',
+/*language name*/
+'Spanish'
 );
 
 insert into FrenchData values(@ID,
 /*French name*/
-'Soulevé de Terre',
+'Soulevï¿½ de Terre',
 /*French Description*/
-'Text for french deadlift here'
+'Text for french deadlift here',
+/*language name*/
+'French'
 );
 
 insert into ForeignData values(@ID,
-/*Spanish*/
-@ID,
-/*French*/
-@ID);
+/*French table name*/
+'FrenchData',
+/*Spanish table name*/
+'SpanishData');
 
 insert into Exercises values(@ID, 
 /*Name*/
@@ -79,7 +84,5 @@ insert into Exercises values(@ID,
 /*Description*/
 'A loaded barbell or bar is lifted off the ground to the level of the hips, torso perpendicular to the floor, before being placed back on the ground. This is one repetition.',
 /*Difficulty*/
-4.25,
-
-@ID,@ID,@ID,@ID,@ID);
+4.25);
 

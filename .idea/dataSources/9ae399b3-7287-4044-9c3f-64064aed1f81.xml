@@ -67,7 +67,7 @@
     </schema>
     <schema id="17" parent="2" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-04-13.11:45:33.620</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-04-17.09:10:34.470</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="18" parent="2" name="guest">
@@ -80,92 +80,62 @@
     <table id="20" parent="17" name="Exercises">
       <ObjectId>613577224</ObjectId>
       <CreatedTimestamp>2021-04-11.11:53:16.040</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:14:31.480</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-15.13:10:10.793</ModifiedTimestamp>
     </table>
     <table id="21" parent="17" name="ForeignData">
       <ObjectId>837578022</ObjectId>
       <CreatedTimestamp>2021-04-11.12:55:13.760</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:55:13.770</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-17.03:19:41.493</ModifiedTimestamp>
     </table>
     <table id="22" parent="17" name="FrenchData">
       <ObjectId>901578250</ObjectId>
       <CreatedTimestamp>2021-04-11.12:58:07.243</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:58:07.253</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-17.08:36:41.067</ModifiedTimestamp>
     </table>
     <table id="23" parent="17" name="Locations">
       <ObjectId>645577338</ObjectId>
       <CreatedTimestamp>2021-04-11.11:55:49.777</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:13:44.183</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-15.13:10:10.743</ModifiedTimestamp>
     </table>
-    <table id="24" parent="17" name="Media">
-      <ObjectId>805577908</ObjectId>
-      <CreatedTimestamp>2021-04-11.12:54:02.483</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:54:02.493</ModifiedTimestamp>
-    </table>
-    <table id="25" parent="17" name="MuscleGroups">
+    <table id="24" parent="17" name="MuscleGroups">
       <ObjectId>709577566</ObjectId>
       <CreatedTimestamp>2021-04-11.12:08:48.660</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.13:10:53.003</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-17.09:09:16.230</ModifiedTimestamp>
     </table>
-    <table id="26" parent="17" name="SpanishData">
+    <table id="25" parent="17" name="SpanishData">
       <ObjectId>869578136</ObjectId>
       <CreatedTimestamp>2021-04-11.12:57:20.963</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:57:20.973</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-17.08:36:31.630</ModifiedTimestamp>
     </table>
-    <table id="27" parent="17" name="Tracking">
+    <table id="26" parent="17" name="Tracking">
       <ObjectId>677577452</ObjectId>
       <CreatedTimestamp>2021-04-11.12:02:58.577</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:14:11.060</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-04-15.13:10:10.693</ModifiedTimestamp>
     </table>
-    <column id="28" parent="20" name="exerciseID">
+    <column id="27" parent="20" name="exerciseID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="20" name="name">
+    <column id="28" parent="20" name="name">
       <Position>2</Position>
       <DataType>varchar(50 char)|0s</DataType>
     </column>
-    <column id="30" parent="20" name="description">
+    <column id="29" parent="20" name="description">
       <Position>3</Position>
       <DataType>varchar(max)|0s</DataType>
     </column>
-    <column id="31" parent="20" name="difficulty">
+    <column id="30" parent="20" name="difficulty">
       <Position>4</Position>
       <DataType>float|0s</DataType>
     </column>
-    <column id="32" parent="20" name="locationsID">
-      <Position>5</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="33" parent="20" name="trackingID">
-      <Position>6</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="34" parent="20" name="muscleGroupsID">
-      <Position>7</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="35" parent="20" name="mediaID">
-      <Position>8</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="36" parent="20" name="foreignDataID">
-      <Position>9</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="37" parent="20" name="PK_Exercises">
+    <index id="31" parent="20" name="PK_Exercises">
       <Position>1</Position>
       <ColNames>exerciseID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="38" parent="20" name="PK_Exercises">
+    <key id="32" parent="20" name="PK_Exercises">
       <ObjectId>629577281</ObjectId>
       <CreatedTimestamp>2021-04-11.11:53:16.040</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-11.11:53:16.040</ModifiedTimestamp>
@@ -173,59 +143,26 @@
       <UnderlyingIndexName>PK_Exercises</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="39" parent="20" name="FK__Exercises__locat__2D27B809">
-      <ObjectId>757577737</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2021-04-11.12:13:44.183</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:13:44.183</ModifiedTimestamp>
-      <ColNames>locationsID</ColNames>
-      <RefTableId>645577338</RefTableId>
-      <RefTableName>Locations</RefTableName>
-      <RefKeyName>PK__Location__A428531F93CFF1DE</RefKeyName>
-      <RefColNames>locationsID</RefColNames>
-    </foreign-key>
-    <foreign-key id="40" parent="20" name="FK__Exercises__track__2E1BDC42">
-      <ObjectId>773577794</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2021-04-11.12:14:11.060</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:14:11.060</ModifiedTimestamp>
-      <ColNames>trackingID</ColNames>
-      <RefTableId>677577452</RefTableId>
-      <RefTableName>Tracking</RefTableName>
-      <RefKeyName>PK_Tracking</RefKeyName>
-      <RefColNames>trackingID</RefColNames>
-    </foreign-key>
-    <foreign-key id="41" parent="20" name="FK__Exercises__muscl__2F10007B">
-      <ObjectId>789577851</ObjectId>
-      <NameSurrogate>1</NameSurrogate>
-      <CreatedTimestamp>2021-04-11.12:14:31.480</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:14:31.480</ModifiedTimestamp>
-      <ColNames>muscleGroupsID</ColNames>
-      <RefTableId>709577566</RefTableId>
-      <RefTableName>MuscleGroups</RefTableName>
-      <RefKeyName>PK_MuscleGroups</RefKeyName>
-      <RefColNames>muscleGroupsID</RefColNames>
-    </foreign-key>
-    <column id="42" parent="21" name="foreignDataID">
+    <column id="33" parent="21" name="foreignDataID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="43" parent="21" name="spanishID">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
+    <column id="34" parent="21" name="frenchID">
+      <Position>4</Position>
+      <DataType>varchar(50 char)|0s</DataType>
     </column>
-    <column id="44" parent="21" name="frenchID">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
+    <column id="35" parent="21" name="spanishID">
+      <Position>5</Position>
+      <DataType>varchar(50 char)|0s</DataType>
     </column>
-    <index id="45" parent="21" name="PK_ForeignData">
+    <index id="36" parent="21" name="PK_ForeignData">
       <Position>1</Position>
       <ColNames>foreignDataID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="46" parent="21" name="PK_ForeignData">
+    <key id="37" parent="21" name="PK_ForeignData">
       <ObjectId>853578079</ObjectId>
       <CreatedTimestamp>2021-04-11.12:55:13.763</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-11.12:55:13.763</ModifiedTimestamp>
@@ -233,61 +170,65 @@
       <UnderlyingIndexName>PK_ForeignData</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="47" parent="22" name="frenchID">
+    <column id="38" parent="22" name="exerciseID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="48" parent="22" name="name">
+    <column id="39" parent="22" name="name">
       <Position>2</Position>
       <DataType>varchar(50 char)|0s</DataType>
     </column>
-    <column id="49" parent="22" name="description">
+    <column id="40" parent="22" name="description">
       <Position>3</Position>
       <DataType>varchar(max)|0s</DataType>
     </column>
-    <index id="50" parent="22" name="PK_FrenchData">
+    <column id="41" parent="22" name="language">
+      <Position>5</Position>
+      <DataType>varchar(50 char)|0s</DataType>
+    </column>
+    <index id="42" parent="22" name="PK_FrenchData">
       <Position>1</Position>
-      <ColNames>frenchID</ColNames>
+      <ColNames>exerciseID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="51" parent="22" name="PK_FrenchData">
+    <key id="43" parent="22" name="PK_FrenchData">
       <ObjectId>917578307</ObjectId>
       <CreatedTimestamp>2021-04-11.12:58:07.247</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-11.12:58:07.247</ModifiedTimestamp>
-      <ColNames>frenchID</ColNames>
+      <ColNames>exerciseID</ColNames>
       <UnderlyingIndexName>PK_FrenchData</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="52" parent="23" name="locationsID">
+    <column id="44" parent="23" name="locationsID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="23" name="boolAtGym">
+    <column id="45" parent="23" name="boolAtGym">
       <Position>2</Position>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="54" parent="23" name="boolAtHome">
+    <column id="46" parent="23" name="boolAtHome">
       <Position>3</Position>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="23" name="bootOutside">
+    <column id="47" parent="23" name="boolOutside">
       <Position>4</Position>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="56" parent="23" name="PK__Location__A428531F93CFF1DE">
+    <index id="48" parent="23" name="PK__Location__A428531F93CFF1DE">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>locationsID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="57" parent="23" name="PK__Location__A428531F93CFF1DE">
+    <key id="49" parent="23" name="PK__Location__A428531F93CFF1DE">
       <ObjectId>741577680</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-04-11.12:10:28.240</CreatedTimestamp>
@@ -296,83 +237,67 @@
       <UnderlyingIndexName>PK__Location__A428531F93CFF1DE</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="58" parent="24" name="mediaID">
+    <column id="50" parent="24" name="muscleGroupsID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="24" name="youtube">
-      <Position>2</Position>
-      <DataType>varchar(max)|0s</DataType>
-    </column>
-    <index id="60" parent="24" name="PK_Media">
-      <Position>1</Position>
-      <ColNames>mediaID</ColNames>
-      <Clustering>1</Clustering>
-      <Unique>1</Unique>
-    </index>
-    <key id="61" parent="24" name="PK_Media">
-      <ObjectId>821577965</ObjectId>
-      <CreatedTimestamp>2021-04-11.12:54:02.483</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-11.12:54:02.483</ModifiedTimestamp>
-      <ColNames>mediaID</ColNames>
-      <UnderlyingIndexName>PK_Media</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="62" parent="25" name="muscleGroupsID">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="63" parent="25" name="triceps">
+    <column id="51" parent="24" name="triceps">
       <Position>2</Position>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="64" parent="25" name="pectorals">
+    <column id="52" parent="24" name="pectorals">
       <Position>3</Position>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="65" parent="25" name="deltoids">
+    <column id="53" parent="24" name="deltoids">
       <Position>4</Position>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="66" parent="25" name="quadriceps">
+    <column id="54" parent="24" name="quadriceps">
       <Position>5</Position>
       <DefaultConstraintName>DF__MuscleGro__quadr__37A5467C</DefaultConstraintName>
       <DefaultExpression>0</DefaultExpression>
       <DataType>bit|0s</DataType>
     </column>
-    <column id="67" parent="25" name="hamstrings">
+    <column id="55" parent="24" name="hamstrings">
       <Position>6</Position>
       <DefaultConstraintName>defualt_muscle</DefaultConstraintName>
       <DefaultExpression>0</DefaultExpression>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="68" parent="25" name="lats">
+    <column id="56" parent="24" name="lats">
       <Position>7</Position>
       <DefaultConstraintName>defualt_muscle1</DefaultConstraintName>
       <DefaultExpression>0</DefaultExpression>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="25" name="traps">
+    <column id="57" parent="24" name="traps">
       <Position>8</Position>
       <DefaultConstraintName>defualt_muscle3</DefaultConstraintName>
       <DefaultExpression>0</DefaultExpression>
       <DataType>bit|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="70" parent="25" name="PK_MuscleGroups">
+    <column id="58" parent="24" name="biceps">
+      <Position>10</Position>
+      <DefaultConstraintName>DF__MuscleGro__bicep__48CFD27E</DefaultConstraintName>
+      <DefaultExpression>0</DefaultExpression>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="59" parent="24" name="PK_MuscleGroups">
       <Position>1</Position>
       <ColNames>muscleGroupsID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="71" parent="25" name="PK_MuscleGroups">
+    <key id="60" parent="24" name="PK_MuscleGroups">
       <ObjectId>725577623</ObjectId>
       <CreatedTimestamp>2021-04-11.12:08:48.660</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-11.12:08:48.660</ModifiedTimestamp>
@@ -380,96 +305,107 @@
       <UnderlyingIndexName>PK_MuscleGroups</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <default id="72" parent="25" name="DF__MuscleGro__quadr__37A5467C">
+    <default id="61" parent="24" name="DF__MuscleGro__quadr__37A5467C">
       <ObjectId>933578364</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2021-04-11.13:06:16.190</ModifiedTimestamp>
       <ColNames>quadriceps</ColNames>
       <DefaultExpression>0</DefaultExpression>
     </default>
-    <default id="73" parent="25" name="defualt_muscle">
+    <default id="62" parent="24" name="defualt_muscle">
       <ObjectId>949578421</ObjectId>
       <ModifiedTimestamp>2021-04-11.13:09:39.297</ModifiedTimestamp>
       <ColNames>hamstrings</ColNames>
       <DefaultExpression>0</DefaultExpression>
     </default>
-    <default id="74" parent="25" name="defualt_muscle1">
+    <default id="63" parent="24" name="defualt_muscle1">
       <ObjectId>965578478</ObjectId>
       <ModifiedTimestamp>2021-04-11.13:10:35.230</ModifiedTimestamp>
       <ColNames>lats</ColNames>
       <DefaultExpression>0</DefaultExpression>
     </default>
-    <default id="75" parent="25" name="defualt_muscle3">
+    <default id="64" parent="24" name="defualt_muscle3">
       <ObjectId>981578535</ObjectId>
       <ModifiedTimestamp>2021-04-11.13:10:53.003</ModifiedTimestamp>
       <ColNames>traps</ColNames>
       <DefaultExpression>0</DefaultExpression>
     </default>
-    <column id="76" parent="26" name="spanishID">
+    <default id="65" parent="24" name="DF__MuscleGro__bicep__48CFD27E">
+      <ObjectId>1221579390</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-04-17.09:09:16.230</ModifiedTimestamp>
+      <ColNames>biceps</ColNames>
+      <DefaultExpression>0</DefaultExpression>
+    </default>
+    <column id="66" parent="25" name="exerciseID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="26" name="name">
+    <column id="67" parent="25" name="name">
       <Position>2</Position>
       <DataType>varchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="78" parent="26" name="description">
+    <column id="68" parent="25" name="description">
       <Position>3</Position>
       <DataType>varchar(max)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="79" parent="26" name="PK_SpanishData">
+    <column id="69" parent="25" name="language">
+      <Position>4</Position>
+      <DataType>varchar(50 char)|0s</DataType>
+    </column>
+    <index id="70" parent="25" name="PK_SpanishData">
       <Position>1</Position>
-      <ColNames>spanishID</ColNames>
+      <ColNames>exerciseID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="80" parent="26" name="PK_SpanishData">
+    <key id="71" parent="25" name="PK_SpanishData">
       <ObjectId>885578193</ObjectId>
       <CreatedTimestamp>2021-04-11.12:57:20.963</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-11.12:57:20.963</ModifiedTimestamp>
-      <ColNames>spanishID</ColNames>
+      <ColNames>exerciseID</ColNames>
       <UnderlyingIndexName>PK_SpanishData</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="81" parent="27" name="trackingID">
+    <column id="72" parent="26" name="trackingID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="27" name="boolRepsSets">
+    <column id="73" parent="26" name="boolRepsSets">
       <Position>2</Position>
       <DataType>bit|0s</DataType>
     </column>
-    <column id="83" parent="27" name="boolBodyWeight">
+    <column id="74" parent="26" name="boolBodyWeight">
       <Position>3</Position>
       <DataType>bit|0s</DataType>
     </column>
-    <column id="84" parent="27" name="boolWeights">
+    <column id="75" parent="26" name="boolWeights">
       <Position>4</Position>
       <DataType>bit|0s</DataType>
     </column>
-    <column id="85" parent="27" name="boolTimer">
+    <column id="76" parent="26" name="boolTimer">
       <Position>5</Position>
       <DataType>bit|0s</DataType>
     </column>
-    <column id="86" parent="27" name="boolStopwatch">
+    <column id="77" parent="26" name="boolStopwatch">
       <Position>6</Position>
       <DataType>bit|0s</DataType>
     </column>
-    <column id="87" parent="27" name="boolDistance">
+    <column id="78" parent="26" name="boolDistance">
       <Position>7</Position>
       <DataType>bit|0s</DataType>
     </column>
-    <index id="88" parent="27" name="PK_Tracking">
+    <index id="79" parent="26" name="PK_Tracking">
       <Position>1</Position>
       <ColNames>trackingID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="89" parent="27" name="PK_Tracking">
+    <key id="80" parent="26" name="PK_Tracking">
       <ObjectId>693577509</ObjectId>
       <CreatedTimestamp>2021-04-11.12:02:58.580</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-11.12:02:58.580</ModifiedTimestamp>

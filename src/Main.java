@@ -1,6 +1,5 @@
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -32,9 +31,6 @@ public class Main {
                     "join MuscleGroups as mg on e.exerciseID = mg.muscleGroupsID\n" +
                     "join Locations as l on e.exerciseID = l.locationsID\n" +
                     "join Tracking as t on e.exerciseID = t.trackingID\n" +
-                    "join ForeignData as fd on fd.foreignDataID = e.exerciseID\n" +
-                    "join SpanishData as sd on fd.foreignDataID = sd.spanishID\n" +
-                    "join FrenchData as frd on fd.foreignDataID = frd.frenchID\n" +
                     "join Media as md on md.mediaID = e.exerciseID\n" +
                     "order by e.exerciseID asc";
 
@@ -56,8 +52,9 @@ public class Main {
      */
     public static void main(String[] args) throws JSONException, SQLException, IOException {
 
-        //Get the FULL table
-        ResultSet result = SQLDatabase.connectAndExecuteSQL(getFullTable);
+        //Get the exercise table to count how many exercises we have
+        String exerciseSQL = "select * from exercises";
+        ResultSet result = SQLDatabase.connectAndExecuteSQL(exerciseSQL);
 
         //Create the full JSON Object to be returned
         JSONObject fullJSON = new JSONObject();
@@ -77,10 +74,20 @@ public class Main {
 
     }
 
+    /**
+     * Saves the JSON to a filepath
+     * @param jsonRaw the raw JSON to be saved
+     * @param filePath path to store file
+     * @param fileName name of the file to save
+     * @throws IOException
+     * @throws JSONException
+     */
     public static void saveFullJSONToFile(JSONObject jsonRaw, String filePath, String fileName) throws IOException, JSONException {
 
+        //Save the JSON with 2 space spacing.
         String toWrite = jsonRaw.toString(2);
 
+        //Saves to location
         File textFile = new File(filePath, fileName + ".json");
         BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
         try {
@@ -131,15 +138,15 @@ public class Main {
 
             //Add the immediate variables from the exercise table
             String exerciseSQL = "select * from Exercises where exerciseID = " + currentExerciseID;
-            addFullTableValuesToJSON(exerciseSQL);
+            addFullTableValuesToJSON(exerciseSQL, "");
 
             //Create locations object
             String locationsSQL = "select * from Locations where locationsID = " + currentExerciseID;
-            addTableObjectToJSON(locationsSQL, "locations", "locationsID");
+            exerciseJSON.put("locations", addTableObjectToJSON(locationsSQL, "locationsID"));
 
             //Create tracking object
             String trackingSQL = "select * from tracking where trackingID = " + currentExerciseID;
-            addTableObjectToJSON(trackingSQL, "tracking", "trackingID");
+            exerciseJSON.put("tracking", addTableObjectToJSON(trackingSQL, "trackingID"));
 
             //Create muscle groups array
             String musclegroupsSQL = "select * from musclegroups where musclegroupsID = " + currentExerciseID;
@@ -147,10 +154,10 @@ public class Main {
 
             //Create media object
             String mediaSQL = "select * from media where mediaID = " + currentExerciseID;
-            addTableObjectToJSON(mediaSQL, "media", "mediaID");
+            exerciseJSON.put("media", addTableObjectToJSON(mediaSQL, "mediaID"));
 
-            //Create foreign data array
-            //TODO: Parse data for foreign data
+            //Create foreign data array,
+            getForeignDataObjectArray("foreignDataID");
 
             //Create the label
             String name = dbResult.getString("name");
@@ -193,10 +200,11 @@ public class Main {
     /**
      * Adds DIRECT values to the JSON, not for objects
      * @param sql The sql string to be executed
+     * @param columnToSkip skips the specific column
      * @throws SQLException
      * @throws JSONException
      */
-    public static void addFullTableValuesToJSON(String sql) throws SQLException, JSONException {
+    public static void addFullTableValuesToJSON(String sql, String columnToSkip) throws SQLException, JSONException {
 
         //Get the tables data
         ResultSet table = SQLDatabase.connectAndExecuteSQL(sql);
@@ -207,6 +215,11 @@ public class Main {
 
         //Add each columns data to the table
         for (int i = 1; i <= tableMeta.getColumnCount(); i++) {
+
+            //Check if the current column is one we skip
+            if (tableMeta.getColumnLabel(i).equals(columnToSkip)) {
+                continue;
+            }
 
             //Based on the type of data, add it to the JSON
             int type = getDataType(tableMeta.getColumnTypeName(i));
@@ -223,8 +236,10 @@ public class Main {
     }
 
     /**
-     * Adds DIRECT values to the JSON, not for objects
+     *
      * @param sql The sql string to be executed
+     * @param tableLabel The label for the array in the JSON
+     * @param columnToSkip skips the specific column
      * @throws SQLException
      * @throws JSONException
      */
@@ -266,12 +281,14 @@ public class Main {
     }
 
     /**
-     * Adds DIRECT values to the JSON, not for objects
+     * Returns that table as a JSON
      * @param sql The sql string to be executed
+     * @param columnToSkip skips the specific column
+     * @return a JSON object of a given table
      * @throws SQLException
      * @throws JSONException
      */
-    public static void addTableObjectToJSON(String sql, String tableLabel, String columnToSkip) throws SQLException, JSONException {
+    public static JSONObject addTableObjectToJSON(String sql, String columnToSkip) throws SQLException, JSONException {
 
         //Get the tables data
         ResultSet table = SQLDatabase.connectAndExecuteSQL(sql);
@@ -305,7 +322,53 @@ public class Main {
         }
 
         //Add temp JSON to exercise JSON
-        exerciseJSON.put(tableLabel, temp);
+        return temp;
+    }
+
+    /**
+     * Specific to the foreign data entered to each exercise.
+     * @param columnToSkip skips the specific column
+     * @throws SQLException
+     * @throws JSONException
+     */
+    public static void getForeignDataObjectArray(String columnToSkip) throws SQLException, JSONException {
+
+        //Create an array to store Language Data JSONObjects
+        ArrayList<JSONObject> languageObjectArray = new ArrayList<>();
+
+        //Find amount of language tables
+        String foreignDataSQL = "select * from ForeignData";
+        ResultSet table = SQLDatabase.connectAndExecuteSQL(foreignDataSQL);
+        ResultSetMetaData tableMeta = table.getMetaData();
+
+        //Move to the row
+        table.next();
+
+        //Create an ArrayList to store the table names for sql
+        ArrayList<String> languageTableNamesArray = new ArrayList<>();
+
+        //Add the names to the ArrayList
+        for (int i = 1; i <= tableMeta.getColumnCount(); i++) {
+
+            //Check if the current column is one we skip
+            if (tableMeta.getColumnLabel(i).equals(columnToSkip)) {
+                continue;
+            }
+
+            //Loop through each language table name and add it to the ArrayList
+            languageTableNamesArray.add(table.getString(i));
+        }
+
+        //Get data from each found language table
+        for (int j = 0; j < languageTableNamesArray.size(); j++) {
+
+            //Grab each table as an object
+            String languageDataSQL = "select * from " + languageTableNamesArray.get(j) + " where exerciseID = " + currentExerciseID;
+            languageObjectArray.add(addTableObjectToJSON(languageDataSQL, "exerciseID"));
+        }
+
+        //Put the whole array in the exercise JSON
+        exerciseJSON.put("foreignData", languageObjectArray.toArray());
     }
 
     /**

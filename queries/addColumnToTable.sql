@@ -1,0 +1,1 @@
+alter table MuscleGroups add biceps bit not null DEFAULT (0)
