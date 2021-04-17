@@ -34,6 +34,7 @@ Main.main()
 
 View the JSON object in the console
 
+Will liekly fail as current file is hard coded to my local path
 (Currently working on a better way to get the JSON)
 ```
 View the [roadmap](#roadmap) to see our plan to get to a better user experience
@@ -60,9 +61,9 @@ Create an issue if you want to add to this.
  - ~~Create the basic JSON object format~~
  - ~~Create the database with exercises~~
  - ~~Generate a JSON from the SQL database~~
- - Dynamically grab the columns and generate the JSON that way instead of hard coding
+ - ~~Dynamically grab the columns and generate the JSON that way instead of hard coding~~
  - Create a UI for users to select how they want their JSON to be created
- - Allow the JSON to be saved to the computer
+ - ~~Allow the JSON to be saved to the computer~~
  - Create an executable app *.exe* 
  - Add a solid amount of exercises, most workout apps have around 100 so we hope to exceed that
  - Host the database
