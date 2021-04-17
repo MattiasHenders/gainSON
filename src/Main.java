@@ -1,6 +1,12 @@
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,26 +23,40 @@ public class Main {
     //==========================================================================
     //
     //final static String VERSION_CODE  = "0.0.1"; 20210413 First log, connects to database and gets a query. start of JSON building
-    final static String VERSION_CODE  = "0.0.1";
+    //final static String VERSION_CODE  = "0.0.2"; 20210415 Starting dynamic grabbing of column data, need to separate into 3 functions
+    //final static String VERSION_CODE  = "0.0.3"; 20210416 Dynamic loading works, saves file to path. Need to work on foreign data next
+    final static String VERSION_CODE  = "0.0.3";
+
+    public static final String getFullTable =
+            "select * from Exercises as e \n" +
+                    "join MuscleGroups as mg on e.exerciseID = mg.muscleGroupsID\n" +
+                    "join Locations as l on e.exerciseID = l.locationsID\n" +
+                    "join Tracking as t on e.exerciseID = t.trackingID\n" +
+                    "join ForeignData as fd on fd.foreignDataID = e.exerciseID\n" +
+                    "join SpanishData as sd on fd.foreignDataID = sd.spanishID\n" +
+                    "join FrenchData as frd on fd.foreignDataID = frd.frenchID\n" +
+                    "join Media as md on md.mediaID = e.exerciseID\n" +
+                    "order by e.exerciseID asc";
+
+    public static JSONObject exerciseJSON;
+
+    public static int currentExerciseID = -1;
+
+    /** SQL Data Types */
+    public static final int BOOL = 0;
+    public static final int INT = 1;
+    public static final int FLOAT = 2;
+    public static final int STRING = 3;
+    public static final int ARRAY = 4;
 
     /**
      * Drives program.
      * @param args unused.
      * @throws JSONException
      */
-    public static void main(String[] args) throws JSONException, SQLException {
+    public static void main(String[] args) throws JSONException, SQLException, IOException {
 
-        String getFullTable =
-                "select * from Exercises as e \n" +
-                "join MuscleGroups as mg on e.exerciseID = mg.muscleGroupsID\n" +
-                "join Locations as l on e.exerciseID = l.locationsID\n" +
-                "join Tracking as t on e.exerciseID = t.trackingID\n" +
-                "join ForeignData as fd on fd.foreignDataID = e.exerciseID\n" +
-                "join SpanishData as sd on fd.foreignDataID = sd.spanishID\n" +
-                "join FrenchData as frd on fd.foreignDataID = frd.frenchID\n" +
-                "join Media as md on md.mediaID = e.exerciseID\n" +
-                "order by e.exerciseID asc";
-
+        //Get the FULL table
         ResultSet result = SQLDatabase.connectAndExecuteSQL(getFullTable);
 
         //Create the full JSON Object to be returned
@@ -51,8 +71,23 @@ public class Main {
         System.out.println(fullJSON.toString(3));
 
         //Write the JSON to memory
-        //saveFullJSONToFile(fullJSON);
+        String filePath = "C:\\Users\\hende\\Desktop";
+        String fileName = "testJSON";
+        saveFullJSONToFile(fullJSON, filePath, fileName);
 
+    }
+
+    public static void saveFullJSONToFile(JSONObject jsonRaw, String filePath, String fileName) throws IOException, JSONException {
+
+        String toWrite = jsonRaw.toString(2);
+
+        File textFile = new File(filePath, fileName + ".json");
+        BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
+        try {
+            out.write(toWrite);
+        } finally {
+            out.close();
+        }
     }
 
     /**
@@ -85,67 +120,40 @@ public class Main {
         //Create JSON object to hold exercise data
         JSONObject returnJSON = new JSONObject();
 
-        //Create exercise JSON to hold each exercise
-        JSONObject exerciseJSON;
-
         //Loop through results
         while (dbResult.next()) {
 
+            //Reset the exercise object
             exerciseJSON = new JSONObject();
 
-            //Create the label
-            String name = dbResult.getString("name");
+            //Get the currentExerciseID, used later
+            currentExerciseID = dbResult.getInt("exerciseID");
 
-            //Add the immediate variables
-            exerciseJSON.put("exerciseID", dbResult.getInt("exerciseID"));
-            exerciseJSON.put("name", name);
-            exerciseJSON.put("description", dbResult.getString("description"));
-            exerciseJSON.put("difficulty", dbResult.getFloat("difficulty"));
+            //Add the immediate variables from the exercise table
+            String exerciseSQL = "select * from Exercises where exerciseID = " + currentExerciseID;
+            addFullTableValuesToJSON(exerciseSQL);
 
             //Create locations object
-            JSONObject locationsObject = new JSONObject();
-            locationsObject.put("boolAtGym", dbResult.getBoolean("boolAtGym"));
-            locationsObject.put("boolAtHome", dbResult.getBoolean("boolAtHome"));
-            locationsObject.put("boolOutside", dbResult.getBoolean("boolOutside"));
-            exerciseJSON.put("locations", locationsObject);
+            String locationsSQL = "select * from Locations where locationsID = " + currentExerciseID;
+            addTableObjectToJSON(locationsSQL, "locations", "locationsID");
 
             //Create tracking object
-            JSONObject trackingObject = new JSONObject();
-            trackingObject.put("boolRepsSets", dbResult.getBoolean("boolRepsSets"));
-            trackingObject.put("boolBodyWeight", dbResult.getBoolean("boolBodyWeight"));
-            trackingObject.put("boolWeights", dbResult.getBoolean("boolWeights"));
-            trackingObject.put("boolTimer", dbResult.getBoolean("boolTimer"));
-            trackingObject.put("boolStopwatch", dbResult.getBoolean("boolStopwatch"));
-            trackingObject.put("boolDistance", dbResult.getBoolean("boolDistance"));
-            exerciseJSON.put("tracking", trackingObject);
+            String trackingSQL = "select * from tracking where trackingID = " + currentExerciseID;
+            addTableObjectToJSON(trackingSQL, "tracking", "trackingID");
 
             //Create muscle groups array
-            ArrayList<String> muscleGroupsArray = new ArrayList<>();
-
-            if (dbResult.getBoolean("pectorals"))
-                muscleGroupsArray.add("pectorals");
-            if (dbResult.getBoolean("triceps"))
-                muscleGroupsArray.add("triceps");
-            if (dbResult.getBoolean("deltoids"))
-                muscleGroupsArray.add("deltoids");
-            if (dbResult.getBoolean("quadriceps"))
-                muscleGroupsArray.add("quadriceps");
-            if (dbResult.getBoolean("hamstrings"))
-                muscleGroupsArray.add("hamstrings");
-            if (dbResult.getBoolean("lats"))
-                muscleGroupsArray.add("lats");
-            if (dbResult.getBoolean("traps"))
-                muscleGroupsArray.add("traps");
-
-            exerciseJSON.put("muscleGroups", muscleGroupsArray.toArray());
+            String musclegroupsSQL = "select * from musclegroups where musclegroupsID = " + currentExerciseID;
+            addTableStringArrayToJSONBasedOnBool(musclegroupsSQL, "muscleGroups", "muscleGroupsID");
 
             //Create media object
-            JSONObject mediaObject = new JSONObject();
-            mediaObject.put("youtube", dbResult.getString("youtube"));
-            exerciseJSON.put("media", mediaObject);
+            String mediaSQL = "select * from media where mediaID = " + currentExerciseID;
+            addTableObjectToJSON(mediaSQL, "media", "mediaID");
 
             //Create foreign data array
             //TODO: Parse data for foreign data
+
+            //Create the label
+            String name = dbResult.getString("name");
 
             //Add the exercise to the data JSON
             returnJSON.put(createJSONLabel(name), exerciseJSON);
@@ -182,4 +190,142 @@ public class Main {
         return label;
     }
 
+    /**
+     * Adds DIRECT values to the JSON, not for objects
+     * @param sql The sql string to be executed
+     * @throws SQLException
+     * @throws JSONException
+     */
+    public static void addFullTableValuesToJSON(String sql) throws SQLException, JSONException {
+
+        //Get the tables data
+        ResultSet table = SQLDatabase.connectAndExecuteSQL(sql);
+        ResultSetMetaData tableMeta = table.getMetaData();
+
+        //Move to the row
+        table.next();
+
+        //Add each columns data to the table
+        for (int i = 1; i <= tableMeta.getColumnCount(); i++) {
+
+            //Based on the type of data, add it to the JSON
+            int type = getDataType(tableMeta.getColumnTypeName(i));
+
+            //Add based on the correct type
+            switch (type) {
+                case BOOL -> exerciseJSON.put(tableMeta.getColumnLabel(i), table.getBoolean(i));
+                case INT -> exerciseJSON.put(tableMeta.getColumnLabel(i), table.getInt(i));
+                case FLOAT -> exerciseJSON.put(tableMeta.getColumnLabel(i), table.getFloat(i));
+                case STRING -> exerciseJSON.put(tableMeta.getColumnLabel(i), table.getString(i));
+                case ARRAY -> exerciseJSON.put(tableMeta.getColumnLabel(i), table.getArray(i));
+            }
+        }
+    }
+
+    /**
+     * Adds DIRECT values to the JSON, not for objects
+     * @param sql The sql string to be executed
+     * @throws SQLException
+     * @throws JSONException
+     */
+    public static void addTableStringArrayToJSONBasedOnBool(String sql, String tableLabel, String columnToSkip) throws SQLException, JSONException {
+
+        //Get the tables data
+        ResultSet table = SQLDatabase.connectAndExecuteSQL(sql);
+        ResultSetMetaData tableMeta = table.getMetaData();
+
+        //Create a blank object to be added
+        JSONObject temp = new JSONObject();
+
+        //Move to the row
+        table.next();
+
+        ArrayList<String> tempArray = new ArrayList();
+
+        //Add each columns data to the table
+        for (int i = 1; i <= tableMeta.getColumnCount(); i++) {
+
+            //Check if the current column is one we skip
+            if (tableMeta.getColumnLabel(i).equals(columnToSkip)) {
+                continue;
+            }
+
+            //Check that we are working with a bool
+            if (getDataType(tableMeta.getColumnTypeName(i)) != BOOL) {
+                continue;
+            }
+
+            //If the column is true then add it
+            if (table.getBoolean(i)) {
+                tempArray.add(tableMeta.getColumnLabel(i));
+            }
+        }
+
+        //Add temp JSON to exercise JSON
+        exerciseJSON.put(tableLabel, tempArray.toArray());
+    }
+
+    /**
+     * Adds DIRECT values to the JSON, not for objects
+     * @param sql The sql string to be executed
+     * @throws SQLException
+     * @throws JSONException
+     */
+    public static void addTableObjectToJSON(String sql, String tableLabel, String columnToSkip) throws SQLException, JSONException {
+
+        //Get the tables data
+        ResultSet table = SQLDatabase.connectAndExecuteSQL(sql);
+        ResultSetMetaData tableMeta = table.getMetaData();
+
+        //Create a blank object to be added
+        JSONObject temp = new JSONObject();
+        
+        //Move to the row
+        table.next();
+
+        //Add each columns data to the table
+        for (int i = 1; i <= tableMeta.getColumnCount(); i++) {
+
+            //Check if the current column is one we skip
+            if (tableMeta.getColumnLabel(i).equals(columnToSkip)) {
+                continue;
+            }
+
+            //Based on the type of data, add it to the JSON
+            int type = getDataType(tableMeta.getColumnTypeName(i));
+
+            //Add based on the correct type
+            switch (type) {
+                case BOOL -> temp.put(tableMeta.getColumnLabel(i), table.getBoolean(i));
+                case INT -> temp.put(tableMeta.getColumnLabel(i), table.getInt(i));
+                case FLOAT -> temp.put(tableMeta.getColumnLabel(i), table.getFloat(i));
+                case STRING -> temp.put(tableMeta.getColumnLabel(i), table.getString(i));
+                case ARRAY -> temp.put(tableMeta.getColumnLabel(i), table.getArray(i));
+            }
+        }
+
+        //Add temp JSON to exercise JSON
+        exerciseJSON.put(tableLabel, temp);
+    }
+
+    /**
+     * Gets an SQL datatype and converts into an int
+     * @param type the SQL datatype
+     * @return the int that represents the datatype
+     */
+    public static int getDataType(String type) {
+        if (type.equals("bit")) {
+            return BOOL;
+        } else if (type.equals("int")) {
+            return INT;
+        } else if (type.equals("float")) {
+            return FLOAT;
+        } else if (type.equals("varchar")) {
+            return STRING;
+        } else if (type.equals("array")) {
+            return ARRAY;
+        } else {
+            return -1;
+        }
+    }
 }
