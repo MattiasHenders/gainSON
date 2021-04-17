@@ -24,7 +24,7 @@ public class SQLDatabase {
             //Connect to gainSON database
             Connection myConnection = DriverManager.getConnection(url, user, password);
 
-            System.out.println("Successfully connected to database. Executing: " + sql);
+            //System.out.println("Successfully connected to database. Executing: " + sql);
 
             //Execute statement
             Statement myStatement = myConnection.createStatement();
