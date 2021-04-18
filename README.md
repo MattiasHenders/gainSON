@@ -67,12 +67,13 @@ Create an issue if you want to add to this.
  - ~~Dynamically grab the columns and generate the JSON that way instead of hard coding~~
  - ~~Allow for users to select how they want their JSON to be created~~
  - ~~Allow the JSON to be saved to the computer~~
- - Create a UI/Create an executable app *.exe* 
+ - ~~Create a UI/Create an executable app *.exe*~~
+ - Create a form for other people to submit their own exercise data
  - Add a solid amount of exercises, most workout apps have around 100 so we hope to exceed that
  - Host the database
  - Host a website for quick downloads of the full and some custom JSONs
  - Use the website to host the JSON
- - Create an API to access the JSON dynamically from apps
+ - Create an API to access the JSON dynamically from apps, not from running **.exe**
 ___
 
 ![gainSON: Because you didn't tell me a better name in time.](assets/img/logo-small.png)
