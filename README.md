@@ -8,18 +8,11 @@ To get started go to [installation](#installation) to get a copy for yourself.
 
 ___
 
-**To request a new exercise** to the database [click here to send a submission!](https://github.com/MattiasHenders/gainSON/wiki/Template-for-NEW-Exercise) 
-
-> If you don't want to fill the template out just request it the same way. It just might take more time to get to.
-
-![Tag for submitting a new exercise.](assets/img/exerciseRequestTag.png)
-
-___
-
 ## Table of Contents
 
 ####  [Description](#description)  - Why make this? Who is it for?
 ####  [Installation](#installation) - How do I get this for my app?
+####  [Request a new Exercise](#request) - Can I add an exercise that isn't there?
 ####  [Contributors](#contributors) - Who helped out with this project?
 ####  [Roadmap](#roadmap) - Where is this project going?
 
@@ -54,6 +47,17 @@ The JSON will appear in the chossen directory.
 **NOTE: As there is no database hosted yet, you will be unable to generate. Getting close to that point though!**
 
 View the [roadmap](#roadmap) to see our plan to get to a better user experience
+
+___
+
+### <a name="request"></a> Request a New Exercise
+
+**To request a new exercise** to the database [click here to send a submission!](https://github.com/MattiasHenders/gainSON/wiki/Template-for-NEW-Exercise) 
+
+> If you don't want to fill the template out just request it the same way. It just might take more time to get to.
+
+![Tag for submitting a new exercise.](assets/img/exerciseRequestTag.png)
+
 ___
 
 ### <a name="contributors"></a> Contributors
