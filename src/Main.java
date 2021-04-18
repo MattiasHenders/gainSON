@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -24,7 +25,8 @@ public class Main {
     //final static String VERSION_CODE  = "0.0.1"; 20210413 First log, connects to database and gets a query. start of JSON building
     //final static String VERSION_CODE  = "0.0.2"; 20210415 Starting dynamic grabbing of column data, need to separate into 3 functions
     //final static String VERSION_CODE  = "0.0.3"; 20210416 Dynamic loading works, saves file to path. Need to work on foreign data next
-    final static String VERSION_CODE  = "0.0.3";
+    //final static String VERSION_CODE  = "0.0.4"; 20210417 Foreign data is added correctly. Full JSON is complete
+    final static String VERSION_CODE  = "0.0.5";
 
     public static final String getFullTable =
             "select * from Exercises as e \n" +
@@ -37,6 +39,8 @@ public class Main {
     public static JSONObject exerciseJSON;
 
     public static int currentExerciseID = -1;
+
+    public static boolean skipExercise = false;
 
     /** SQL Data Types */
     public static final int BOOL = 0;
@@ -130,6 +134,9 @@ public class Main {
         //Loop through results
         while (dbResult.next()) {
 
+            //Reset the skip flag
+            skipExercise = false;
+
             //Reset the exercise object
             exerciseJSON = new JSONObject();
 
@@ -161,6 +168,11 @@ public class Main {
 
             //Create the label
             String name = dbResult.getString("name");
+
+            //Skip the current exercise if flag was tripped somewhere
+            if (skipExercise) {
+                continue;
+            }
 
             //Add the exercise to the data JSON
             returnJSON.put(createJSONLabel(name), exerciseJSON);
@@ -290,34 +302,34 @@ public class Main {
      */
     public static JSONObject addTableObjectToJSON(String sql, String columnToSkip) throws SQLException, JSONException {
 
-        //Get the tables data
-        ResultSet table = SQLDatabase.connectAndExecuteSQL(sql);
-        ResultSetMetaData tableMeta = table.getMetaData();
+        //Get the tables row data
+        ResultSet row = SQLDatabase.connectAndExecuteSQL(sql);
+        ResultSetMetaData rowMeta = row.getMetaData();
 
         //Create a blank object to be added
         JSONObject temp = new JSONObject();
         
         //Move to the row
-        table.next();
+        row.next();
 
-        //Add each columns data to the table
-        for (int i = 1; i <= tableMeta.getColumnCount(); i++) {
+        //Add each columns data to the row
+        for (int i = 1; i <= rowMeta.getColumnCount(); i++) {
 
             //Check if the current column is one we skip
-            if (tableMeta.getColumnLabel(i).equals(columnToSkip)) {
+            if (rowMeta.getColumnLabel(i).equals(columnToSkip)) {
                 continue;
             }
 
             //Based on the type of data, add it to the JSON
-            int type = getDataType(tableMeta.getColumnTypeName(i));
+            int type = getDataType(rowMeta.getColumnTypeName(i));
 
             //Add based on the correct type
             switch (type) {
-                case BOOL -> temp.put(tableMeta.getColumnLabel(i), table.getBoolean(i));
-                case INT -> temp.put(tableMeta.getColumnLabel(i), table.getInt(i));
-                case FLOAT -> temp.put(tableMeta.getColumnLabel(i), table.getFloat(i));
-                case STRING -> temp.put(tableMeta.getColumnLabel(i), table.getString(i));
-                case ARRAY -> temp.put(tableMeta.getColumnLabel(i), table.getArray(i));
+                case BOOL -> temp.put(rowMeta.getColumnLabel(i), row.getBoolean(i));
+                case INT -> temp.put(rowMeta.getColumnLabel(i), row.getInt(i));
+                case FLOAT -> temp.put(rowMeta.getColumnLabel(i), row.getFloat(i));
+                case STRING -> temp.put(rowMeta.getColumnLabel(i), row.getString(i));
+                case ARRAY -> temp.put(rowMeta.getColumnLabel(i), row.getArray(i));
             }
         }
 
@@ -390,5 +402,230 @@ public class Main {
         } else {
             return -1;
         }
+    }
+
+    /**
+     * If the desired value is found skip the exercise
+     * @param row the row to be searched
+     * @param columnName the column name to check
+     * @param boolToSkip the value to check in the column
+     * @throws SQLException
+     */
+    public static void checkIfExerciseIsValid(ResultSet row, String columnName, boolean boolToSkip) throws SQLException {
+
+        //Column number
+        int selectedColumnInt = -1;
+
+        //Check if the row given contains the column
+        for (int i = 1; i <= row.getMetaData().getColumnCount(); i++) {
+
+            //If the row is there, check that value later
+            if (row.getMetaData().getColumnName(i).equals(columnName)) {
+                selectedColumnInt = i;
+                break;
+            }
+
+            //If the value is not found, exit out, no need to continue just assume the exercise is ok
+            if (i == row.getMetaData().getColumnCount()) {
+                return;
+            }
+        }
+
+        if (selectedColumnInt != -1) {
+
+            //Based on the type check the value
+            ResultSetMetaData meta = row.getMetaData();
+            int type = getDataType(meta.getColumnTypeName(selectedColumnInt));
+
+            //Check that it is a boolean
+            if (type == BOOL) {
+                if (row.getBoolean(selectedColumnInt) == boolToSkip) {
+                    skipExercise = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * If the desired value is found skip the exercise
+     * @param row the row to be searched
+     * @param columnName the column name to check
+     * @param intToSkip the value to check in the column
+     * @throws SQLException
+     */
+    public static void checkIfExerciseIsValid(ResultSet row, String columnName, int intToSkip) throws SQLException {
+
+        //Column number
+        int selectedColumnInt = -1;
+
+        //Check if the row given contains the column
+        for (int i = 1; i <= row.getMetaData().getColumnCount(); i++) {
+
+            //If the row is there, check that value later
+            if (row.getMetaData().getColumnName(i).equals(columnName)) {
+                selectedColumnInt = i;
+                break;
+            }
+
+            //If the value is not found, exit out, no need to continue just assume the exercise is ok
+            if (i == row.getMetaData().getColumnCount()) {
+                return;
+            }
+        }
+
+        if (selectedColumnInt != -1) {
+
+            //Based on the type check the value
+            ResultSetMetaData meta = row.getMetaData();
+            int type = getDataType(meta.getColumnTypeName(selectedColumnInt));
+
+            //Check that it is an int
+            if (type == INT) {
+                if (row.getInt(selectedColumnInt) == intToSkip) {
+                    skipExercise = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * If the desired value is found skip the exercise
+     * @param row the row to be searched
+     * @param columnName the column name to check
+     * @param floatToSkip the value to check in the column
+     * @throws SQLException
+     */
+    public static void checkIfExerciseIsValid(ResultSet row, String columnName, float floatToSkip) throws SQLException {
+
+        //Column number
+        int selectedColumnInt = -1;
+
+        //Check if the row given contains the column
+        for (int i = 1; i <= row.getMetaData().getColumnCount(); i++) {
+
+            //If the row is there, check that value later
+            if (row.getMetaData().getColumnName(i).equals(columnName)) {
+                selectedColumnInt = i;
+                break;
+            }
+
+            //If the value is not found, exit out, no need to continue just assume the exercise is ok
+            if (i == row.getMetaData().getColumnCount()) {
+                return;
+            }
+        }
+
+        if (selectedColumnInt != -1) {
+
+            //Based on the type check the value
+            ResultSetMetaData meta = row.getMetaData();
+            int type = getDataType(meta.getColumnTypeName(selectedColumnInt));
+
+            //Check that it is a float
+            if (type == FLOAT) {
+                if (thresholdBasedFloatsComparison(row.getFloat(selectedColumnInt), floatToSkip)) {
+                    skipExercise = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * If the desired value is found skip the exercise
+     * @param row the row to be searched
+     * @param columnName the column name to check
+     * @param stringToSkip the value to check in the column
+     * @throws SQLException
+     */
+    public static void checkIfExerciseIsValid(ResultSet row, String columnName, String stringToSkip) throws SQLException {
+
+        //Column number
+        int selectedColumnInt = -1;
+
+        //Check if the row given contains the column
+        for (int i = 1; i <= row.getMetaData().getColumnCount(); i++) {
+
+            //If the row is there, check that value later
+            if (row.getMetaData().getColumnName(i).equals(columnName)) {
+                selectedColumnInt = i;
+                break;
+            }
+
+            //If the value is not found, exit out, no need to continue just assume the exercise is ok
+            if (i == row.getMetaData().getColumnCount()) {
+                return;
+            }
+        }
+
+        if (selectedColumnInt != -1) {
+
+            //Based on the type check the value
+            ResultSetMetaData meta = row.getMetaData();
+            int type = getDataType(meta.getColumnTypeName(selectedColumnInt));
+
+            //Check that it is a string
+            if (type == STRING) {
+                if (row.getString(selectedColumnInt).equals(stringToSkip)) {
+                    skipExercise = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * If the desired value is found skip the exercise
+     * @param row the row to be searched
+     * @param columnName the column name to check
+     * @param arrayToSkip the value to check in the column
+     * @throws SQLException
+     */
+    public static void checkIfExerciseIsValid(ResultSet row, String columnName, Array arrayToSkip) throws SQLException {
+
+        //Column number
+        int selectedColumnInt = -1;
+
+        //Check if the row given contains the column
+        for (int i = 1; i <= row.getMetaData().getColumnCount(); i++) {
+
+            //If the row is there, check that value later
+            if (row.getMetaData().getColumnName(i).equals(columnName)) {
+                selectedColumnInt = i;
+                break;
+            }
+
+            //If the value is not found, exit out, no need to continue just assume the exercise is ok
+            if (i == row.getMetaData().getColumnCount()) {
+                return;
+            }
+        }
+
+        if (selectedColumnInt != -1) {
+
+            //Based on the type check the value
+            ResultSetMetaData meta = row.getMetaData();
+            int type = getDataType(meta.getColumnTypeName(selectedColumnInt));
+
+            //Check that it is an array
+            if (type == ARRAY) {
+                if (row.getArray(selectedColumnInt).equals(arrayToSkip)) {
+                    skipExercise = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * Compares two floats
+     * @author https://howtodoinjava.com/java-examples/correctly-compare-float-double/
+     */
+    private static boolean thresholdBasedFloatsComparison(float f1, float f2)
+    {
+        final double THRESHOLD = .0001;
+
+        //Checks the float based on abs math
+        if (Math.abs(f1 - f2) < THRESHOLD)
+            return true;
+        else
+            return false;
     }
 }
