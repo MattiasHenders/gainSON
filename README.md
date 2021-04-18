@@ -8,6 +8,14 @@ To get started go to [installation](#installation) to get a copy for yourself.
 
 ___
 
+**To request a new exercise** to the database [click here to send a submission!](https://github.com/MattiasHenders/gainSON/wiki/Template-for-NEW-Exercise) 
+
+> If you don't want to fill the template out just request it the same way. It just might take more time to get to.
+
+![Tag for submitting a new exercise.](assets/img/exerciseRequestTag.png)
+
+___
+
 ## Table of Contents
 
 ####  [Description](#description)  - Why make this? Who is it for?
@@ -27,16 +35,24 @@ ___
 ### <a name="installation"></a> Installation
 
 Clone the repo:
+
+```git clone https://github.com/MattiasHenders/gainSON.git```
+
+Open the project in your favourite compiler:
+
+```SaveJSONGUI.main > Run```
+
+Run the main method and follow the GUI:
+
 ```
-JSONGenerator.main()
-
-...run it
-
-View the JSON object in the console
-
-Will likely fail as current file is hard coded to my local path
-(Currently working on a better way to get the JSON)
+> Select path and file name
+> Click GENERATE JSON
 ```
+
+The JSON will appear in the chossen directory.
+
+**NOTE: As there is no database hosted yet, you will be unable to generate. Getting close to that point though!**
+
 View the [roadmap](#roadmap) to see our plan to get to a better user experience
 ___
 
@@ -64,12 +80,13 @@ Create an issue if you want to add to this.
  - ~~Dynamically grab the columns and generate the JSON that way instead of hard coding~~
  - ~~Allow for users to select how they want their JSON to be created~~
  - ~~Allow the JSON to be saved to the computer~~
- - Create a UI/Create an executable app *.exe* 
+ - ~~Create a UI/Create an executable app *.exe*~~
+ - Create a form for other people to submit their own exercise data
  - Add a solid amount of exercises, most workout apps have around 100 so we hope to exceed that
  - Host the database
  - Host a website for quick downloads of the full and some custom JSONs
  - Use the website to host the JSON
- - Create an API to access the JSON dynamically from apps
+ - Create an API to access the JSON dynamically from apps, not from running **.exe**
 ___
 
 ![gainSON: Because you didn't tell me a better name in time.](assets/img/logo-small.png)
