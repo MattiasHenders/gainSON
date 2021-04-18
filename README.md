@@ -62,7 +62,7 @@ Create an issue if you want to add to this.
  - ~~Create the database with exercises~~
  - ~~Generate a JSON from the SQL database~~
  - ~~Dynamically grab the columns and generate the JSON that way instead of hard coding~~
- - Allow for users to select how they want their JSON to be created
+ - ~~Allow for users to select how they want their JSON to be created~~
  - ~~Allow the JSON to be saved to the computer~~
  - Create a UI/Create an executable app *.exe* 
  - Add a solid amount of exercises, most workout apps have around 100 so we hope to exceed that
