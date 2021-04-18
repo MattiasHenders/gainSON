@@ -8,6 +8,14 @@ To get started go to [installation](#installation) to get a copy for yourself.
 
 ___
 
+**To request a new exercise** to the database [click here to send a submission!](https://github.com/MattiasHenders/gainSON/wiki/Template-for-NEW-Exercise) 
+
+> If you don't want to fill the template out just request it the same way. It just might take more time to get to.
+
+![Tag for submitting a new exercise.](assets/img/exerciseRequestTag.png)
+
+___
+
 ## Table of Contents
 
 ####  [Description](#description)  - Why make this? Who is it for?
@@ -27,18 +35,23 @@ ___
 ### <a name="installation"></a> Installation
 
 Clone the repo:
-```
-Open the project in your favourite compiler
 
-Navigate to SaveJSONGUI.main
+```git clone https://github.com/MattiasHenders/gainSON.git```
 
-Run the main method and follow the GUI
- > Select path and file name
- > Click GENERATE JSON
+Open the project in your favourite compiler:
+
+```SaveJSONGUI.main > Run```
+
+Run the main method and follow the GUI:
+
 ```
+> Select path and file name
+> Click GENERATE JSON
+```
+
 The JSON will appear in the chossen directory.
 
-NOTE: As there is no database hosted yet, you will be unable to generate. Getting close to that point though!
+**NOTE: As there is no database hosted yet, you will be unable to generate. Getting close to that point though!**
 
 View the [roadmap](#roadmap) to see our plan to get to a better user experience
 ___
