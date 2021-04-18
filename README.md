@@ -28,15 +28,18 @@ ___
 
 Clone the repo:
 ```
-JSONGenerator.main()
+Open the project in your favourite compiler
 
-...run it
+Navigate to SaveJSONGUI.main
 
-View the JSON object in the console
-
-Will likely fail as current file is hard coded to my local path
-(Currently working on a better way to get the JSON)
+Run the main method and follow the GUI
+ > Select path and file name
+ > Click GENERATE JSON
 ```
+The JSON will appear in the chossen directory.
+
+NOTE: As there is no database hosted yet, you will be unable to generate. Getting close to that point though!
+
 View the [roadmap](#roadmap) to see our plan to get to a better user experience
 ___
 
