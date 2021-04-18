@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * Drives the application.
  */
-public class Main {
+public class JSONGenerator {
 
     //==========================================================================
     //  CHANGE LOG
@@ -26,7 +26,9 @@ public class Main {
     //final static String VERSION_CODE  = "0.0.2"; 20210415 Starting dynamic grabbing of column data, need to separate into 3 functions
     //final static String VERSION_CODE  = "0.0.3"; 20210416 Dynamic loading works, saves file to path. Need to work on foreign data next
     //final static String VERSION_CODE  = "0.0.4"; 20210417 Foreign data is added correctly. Full JSON is complete
-    final static String VERSION_CODE  = "0.0.5";
+    //final static String VERSION_CODE  = "0.0.5"; 20210417 Added methods to allow the user to filter out certain exercises
+    //final static String VERSION_CODE  = "0.0.6"; 20210417 Moved methods around and created a basic GUI for saving the JSON
+    final static String VERSION_CODE  = "0.0.7";
 
     public static final String getFullTable =
             "select * from Exercises as e \n" +
@@ -50,11 +52,14 @@ public class Main {
     public static final int ARRAY = 4;
 
     /**
-     * Drives program.
-     * @param args unused.
+     * Generate the JSON and drives the program
+     * @param filePath path to save JSON to
+     * @param fileName name to call the file
      * @throws JSONException
+     * @throws SQLException
+     * @throws IOException
      */
-    public static void main(String[] args) throws JSONException, SQLException, IOException {
+    public static void generateJSON(String filePath, String fileName) throws JSONException, SQLException, IOException {
 
         //Get the exercise table to count how many exercises we have
         String exerciseSQL = "select * from exercises";
@@ -69,11 +74,9 @@ public class Main {
         //Add full exerciseData below meta data
         fullJSON.put("exerciseData", getDataJSON(result));
 
-        System.out.println(fullJSON.toString(3));
+        //System.out.println(fullJSON.toString(3));
 
         //Write the JSON to memory
-        String filePath = "C:\\Users\\hende\\Desktop";
-        String fileName = "testJSON";
         saveFullJSONToFile(fullJSON, filePath, fileName);
 
     }
@@ -99,6 +102,8 @@ public class Main {
         } finally {
             out.close();
         }
+
+
     }
 
     /**

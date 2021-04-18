@@ -28,7 +28,7 @@ ___
 
 Clone the repo:
 ```
-Main.main()
+JSONGenerator.main()
 
 ...run it
 

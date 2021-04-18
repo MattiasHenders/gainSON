@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "date": "Sat Apr 17 18:56:24 PDT 2021",
+    "version": "0.0.6"
+  },
+  "exerciseData": {
+    "pushUp": {
+      "difficulty": 2,
+      "muscleGroups": [
+        "triceps",
+        "pectorals",
+        "deltoids"
+      ],
+      "exerciseID": 1,
+      "name": "Push Up",
+      "description": "Lower your body until your chest nears the floor at the bottom of the movement, and then return up to the starting position. This is one repetition.",
+      "foreignData": [
+        {
+          "name": "Faire Monter",
+          "description": "Text for french push up here",
+          "language": "French"
+        },
+        {
+          "name": "Hacer Subir",
+          "description": "Text for spanish push up here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": true,
+        "boolOutside": true,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=_l3ySVKYVJ8"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": true,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "deadlift": {
+      "difficulty": 4.25,
+      "muscleGroups": [
+        "quadriceps",
+        "hamstrings",
+        "lats",
+        "traps"
+      ],
+      "exerciseID": 2,
+      "name": "Deadlift",
+      "description": "A loaded barbell or bar is lifted off the ground to the level of the hips, torso perpendicular to the floor, before being placed back on the ground. This is one repetition.",
+      "foreignData": [
+        {
+          "name": "Soulevé de Terre",
+          "description": "Text for french deadlift here",
+          "language": "French"
+        },
+        {
+          "name": "Peso Muerto",
+          "description": "Text for spanish deadlift here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=op9kVnSso6Q"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    }
+  }
+}
