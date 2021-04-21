@@ -87,7 +87,7 @@ Create an issue if you want to add to this.
  - ~~Create a UI/Create an executable app *.exe*~~
  - Create a form for other people to submit their own exercise data
  - Add a solid amount of exercises, most workout apps have around 100 so we hope to exceed that
- - Host the database
+ - Host the database **IN PROGRESS RIGHT NOW!**
  - Host a website for quick downloads of the full and some custom JSONs
  - Use the website to host the JSON
  - Create an API to access the JSON dynamically from apps, not from running **.exe**
