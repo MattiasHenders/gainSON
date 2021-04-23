@@ -1,7 +1,7 @@
 {
   "meta": {
-    "date": "Sat Apr 17 18:56:24 PDT 2021",
-    "version": "0.0.6"
+    "date": "Wed Apr 21 20:44:12 PDT 2021",
+    "version": "0.0.7"
   },
   "exerciseData": {
     "pushUp": {
@@ -36,6 +36,42 @@
         "boolDistance": false,
         "boolRepsSets": true,
         "boolBodyWeight": true,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "benchPress": {
+      "difficulty": 3.75,
+      "muscleGroups": [
+        "triceps",
+        "pectorals",
+        "deltoids"
+      ],
+      "exerciseID": 3,
+      "name": "Bench Press",
+      "description": "The bench press is an upper-body weight training exercise in which the trainee presses a weight upwards while lying on a weight training bench.",
+      "foreignData": [
+        {
+          "description": "Text for french bench press here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish Bench Press",
+          "description": "Text for spanish bench press here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=SCVCLChPQFY"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
         "boolStopwatch": false,
         "boolWeights": true,
         "boolTimer": false

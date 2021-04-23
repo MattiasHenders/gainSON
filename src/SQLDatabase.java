@@ -21,6 +21,7 @@ public class SQLDatabase {
         ResultSet databaseResult = null;
 
         try {
+
             //Connect to gainSON database
             Connection myConnection = DriverManager.getConnection(url, user, password);
 
@@ -32,7 +33,34 @@ public class SQLDatabase {
 
         } catch (SQLException e) {
             System.out.println("ERROR in Database Connection: " + e);
+        } 
+        return databaseResult;
+    }
+
+    /**
+     * Connects to the gainSON database and executes a statement
+     * @param sql as a String query to be executed.
+     * @return databaseResult as a ResultSet to be parsed later.
+     */
+    public static ResultSet connectAndStatementSQL(String sql) {
+
+        ResultSet databaseResult = null;
+
+        try {
+
+            //Connect to gainSON database
+            Connection myConnection = DriverManager.getConnection(url, user, password);
+
+            //System.out.println("Successfully connected to database. Executing: " + sql);
+
+            //Execute statement
+            Statement myStatement = myConnection.createStatement();
+            myStatement.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            System.out.println("ERROR in Database Connection: " + e);
         }
         return databaseResult;
     }
+
 }
