@@ -28,7 +28,9 @@ public class JSONGenerator {
     //final static String VERSION_CODE  = "0.0.4"; 20210417 Foreign data is added correctly. Full JSON is complete
     //final static String VERSION_CODE  = "0.0.5"; 20210417 Added methods to allow the user to filter out certain exercises
     //final static String VERSION_CODE  = "0.0.6"; 20210417 Moved methods around and created a basic GUI for saving the JSON
-    final static String VERSION_CODE  = "0.0.7";
+    //final static String VERSION_CODE  = "0.0.7"; 20210422 Created panel to add exercises more easily
+    //final static String VERSION_CODE  = "0.0.8"; 20210423 Added option to save the txt file locally for user submissions to Github
+    final static String VERSION_CODE  = "0.0.9";
 
     public static final String getFullTable =
             "select * from Exercises as e \n" +
