@@ -84,7 +84,7 @@ public class queryForm {
     public void saveFullAddExerciseToFile(String toWrite) throws IOException {
 
         //Saves to location
-        File textFile = new File("/", nameText.getText().trim().toLowerCase() + "ExerciseAdd.txt");
+        File textFile = new File("./", nameText.getText().trim().toLowerCase() + "ExerciseAdd.txt");
         BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
         try {
             out.write(toWrite);
@@ -92,7 +92,6 @@ public class queryForm {
         } finally {
             out.close();
         }
-
     }
 
     /**
