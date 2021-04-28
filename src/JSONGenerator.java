@@ -30,7 +30,8 @@ public class JSONGenerator {
     //final static String VERSION_CODE  = "0.0.6"; 20210417 Moved methods around and created a basic GUI for saving the JSON
     //final static String VERSION_CODE  = "0.0.7"; 20210422 Created panel to add exercises more easily
     //final static String VERSION_CODE  = "0.0.8"; 20210423 Added option to save the txt file locally for user submissions to Github
-    final static String VERSION_CODE  = "0.0.9";
+    //final static String VERSION_CODE  = "0.0.9"; 20210427 Added exercises. Added more info to meta, mainly just for ego?
+    final static String VERSION_CODE  = "0.0.10";
 
     public static final String getFullTable =
             "select * from Exercises as e \n" +
@@ -122,6 +123,8 @@ public class JSONGenerator {
         Date now = new Date();
 
         //Put data into the JSON
+        returnJSON.put("title", "gainSON");
+        returnJSON.put("author", "Mattias Henders");
         returnJSON.put("date", now.toString());
         returnJSON.put("version", VERSION_CODE);
 

@@ -1,7 +1,9 @@
 {
   "meta": {
-    "date": "Wed Apr 21 20:44:12 PDT 2021",
-    "version": "0.0.7"
+    "date": "Tue Apr 27 19:26:06 PDT 2021",
+    "author": "Mattias Henders",
+    "title": "gainSON",
+    "version": "0.0.10"
   },
   "exerciseData": {
     "pushUp": {
@@ -36,6 +38,113 @@
         "boolDistance": false,
         "boolRepsSets": true,
         "boolBodyWeight": true,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "dumbbellBenchPress": {
+      "difficulty": 2,
+      "muscleGroups": [
+        "triceps",
+        "pectorals",
+        "deltoids"
+      ],
+      "exerciseID": 6,
+      "name": "Dumbbell Bench Press",
+      "description": "Sit down on bench with dumbbells resting on lower thigh. Kick weights to shoulder and lie back. Position dumbbells to sides of chest with bent arm under each dumbbell.",
+      "foreignData": [
+        {
+          "name": "French dumbbell bench press",
+          "description": "Text for french dumbbell bench press here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish dumbbell bench press",
+          "description": "Text for spanish dumbbell bench press here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=XMc1N3o-Qyw"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "barbellCloseGripBenchPress": {
+      "difficulty": 3.5,
+      "muscleGroups": [
+        "triceps",
+        "pectorals",
+        "deltoids"
+      ],
+      "exerciseID": 7,
+      "name": "Barbell Close Grip Bench Press",
+      "description": "Lie on bench and grasp barbell from rack with shoulder width grip.",
+      "foreignData": [
+        {
+          "name": "French barbell close grip bench press",
+          "description": "Text for french barbell close grip bench press here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish barbell close grip bench press",
+          "description": "Text for spanish barbell close grip bench press here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=R10lO2_Hyoc"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "dumbbellHammerCurl": {
+      "difficulty": 2.5,
+      "muscleGroups": ["biceps"],
+      "exerciseID": 10,
+      "name": "Dumbbell Hammer Curl",
+      "description": "Position two dumbbells to sides, palms facing in, arms straight. With elbows to sides, raise one dumbbell until forearm is vertical and thumb faces shoulder. Lower to original position and repeat with alternative arm.  ",
+      "foreignData": [
+        {
+          "name": "French dumbbell hammer curl",
+          "description": "Text for french dumbbell hammer curl here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish dumbbell hammer curl",
+          "description": "Text for spanish dumbbell hammer curl here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=OCTS3avlWbo"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
         "boolStopwatch": false,
         "boolWeights": true,
         "boolTimer": false
@@ -77,6 +186,76 @@
         "boolTimer": false
       }
     },
+    "chestDip": {
+      "difficulty": 2,
+      "muscleGroups": [
+        "triceps",
+        "pectorals",
+        "deltoids"
+      ],
+      "exerciseID": 5,
+      "name": "Chest Dip",
+      "description": "Mount wide dip bar with oblique grip (bar diagonal under palm), arms straight with shoulders above hands. Bend knees and hips slightly.",
+      "foreignData": [
+        {
+          "name": "French chest dip",
+          "description": "Text for french chest dip here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish chest dip",
+          "description": "Text for spanish chest dip here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": true,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=o2qX3Zb5mvg"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": true,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "cableHammerCurl": {
+      "difficulty": 2.5,
+      "muscleGroups": ["biceps"],
+      "exerciseID": 9,
+      "name": "Cable Hammer Curl",
+      "description": "Grasp cable rope with palms facing inward. Stand upright with arms straight down to sides.  With elbows to side, raise rope forward and upward with both arms until forearms are vertical. Lower until arms are fully extended. Repeat.  ",
+      "foreignData": [
+        {
+          "name": "French cable hammer curl",
+          "description": "Text for french cable hammer curl here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish cable hammer curl",
+          "description": "Text for spanish cable hammer curl here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=vsarApmqJmo"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
     "deadlift": {
       "difficulty": 4.25,
       "muscleGroups": [
@@ -106,6 +285,75 @@
         "boolAtGym": true
       },
       "media": {"youtube": "https://www.youtube.com/watch?v=op9kVnSso6Q"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "barbellSquat": {
+      "difficulty": 3.5,
+      "muscleGroups": [
+        "quadriceps",
+        "hamstrings"
+      ],
+      "exerciseID": 4,
+      "name": "Barbell Squat",
+      "description": "Squat down by bending hips back while allowing knees to bend forward, keeping back straight and knees pointed same direction as feet. ",
+      "foreignData": [
+        {
+          "name": "French barbell squat",
+          "description": "Text for french barbell squat here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish barbell squat",
+          "description": "Text for spanish barbell squat here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=ultWZbUMPL8"},
+      "tracking": {
+        "boolDistance": false,
+        "boolRepsSets": true,
+        "boolBodyWeight": false,
+        "boolStopwatch": false,
+        "boolWeights": true,
+        "boolTimer": false
+      }
+    },
+    "barbellCurl": {
+      "difficulty": 3,
+      "muscleGroups": ["biceps"],
+      "exerciseID": 8,
+      "name": "Barbell Curl ",
+      "description": "Grasp bar with shoulder width underhand grip. With elbows to side, raise bar until forearms are vertical. Lower until arms are fully extended. Repeat.",
+      "foreignData": [
+        {
+          "name": "French barbell curl ",
+          "description": "Text for french barbell curl  here",
+          "language": "French"
+        },
+        {
+          "name": "Spanish barbell curl ",
+          "description": "Text for spanish barbell curl  here",
+          "language": "Spanish"
+        }
+      ],
+      "locations": {
+        "boolAtHome": false,
+        "boolOutside": false,
+        "boolAtGym": true
+      },
+      "media": {"youtube": "https://www.youtube.com/watch?v=4LCNSa36IaE"},
       "tracking": {
         "boolDistance": false,
         "boolRepsSets": true,
